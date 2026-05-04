@@ -1,0 +1,148 @@
+{
+  "home": {
+    "title": "Welcome to Spending Tracker",
+    "subtitle": "Split expenses, track balances, and settle up with friends.",
+    "signIn": "Sign in",
+    "register": "Create account"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Enter your credentials to continue.",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "••••••••",
+      "submit": "Sign in",
+      "submitting": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "createOne": "Create one"
+    },
+    "register": {
+      "title": "Create account",
+      "subtitle": "Enter your details to get started.",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "••••••••",
+      "submit": "Create account",
+      "submitting": "Creating account...",
+      "checkEmail": {
+        "title": "Check your email",
+        "body": "We sent a confirmation link to your address. Click it to activate your account.",
+        "backToLogin": "Back to sign in"
+      },
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in"
+    }
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "groups": "Groups",
+    "add": "Add",
+    "settings": "Settings",
+    "account": "Account"
+  },
+  "account": {
+    "title": "Account",
+    "emailLabel": "Email",
+    "displayNameLabel": "Display Name",
+    "displayNamePlaceholder": "Your name",
+    "save": "Save",
+    "saving": "Saving...",
+    "logout": "Sign out",
+    "currencySettings": "Currency Settings",
+    "dangerZone": "Account"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "youAreOwed": "You are owed",
+    "youOwe": "You owe",
+    "netBalance": "Net balance",
+    "noGroups": "No groups yet. Create one to get started.",
+    "yourGroups": "Your Groups",
+    "viewGroup": "View"
+  },
+  "groups": {
+    "title": "Groups",
+    "newGroup": "New Group",
+    "noGroups": "You haven't joined any groups yet.",
+    "members": "members",
+    "create": {
+      "title": "Create a Group",
+      "nameLabel": "Group Name",
+      "namePlaceholder": "e.g. Barcelona Trip",
+      "currencyLabel": "Currency",
+      "submit": "Create Group",
+      "submitting": "Creating..."
+    },
+    "detail": {
+      "expenses": "Expenses",
+      "debts": "Simplified Debts",
+      "noExpenses": "No expenses yet.",
+      "allSettled": "All settled up!",
+      "addMember": "Add Member",
+      "settleUp": "Settle Up",
+      "paidBy": "Paid by",
+      "owes": "owes",
+      "simplifyDebts": "Simplify Debts"
+    },
+    "addMember": {
+      "label": "Email address",
+      "placeholder": "friend@example.com",
+      "submit": "Add",
+      "submitting": "Adding...",
+      "notFound": "User not found. They must register first.",
+      "alreadyMember": "Already a member of this group."
+    },
+    "settle": {
+      "title": "Record Settlement",
+      "to": "Paid to",
+      "amount": "Amount",
+      "submit": "Record Payment",
+      "submitting": "Saving..."
+    }
+  },
+  "expenses": {
+    "add": {
+      "title": "Add Expense",
+      "groupLabel": "Group",
+      "groupPlaceholder": "Select a group",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "e.g. Dinner",
+      "amountLabel": "Amount",
+      "currencyLabel": "Currency",
+      "splitPreview": "Split preview",
+      "each": "each",
+      "membersLabel": "Who's involved?",
+      "paidByLabel": "Paid by",
+      "submit": "Add Expense",
+      "submitting": "Adding...",
+      "noGroups": "You need a group first."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "preferredCurrency": "Preferred Currency",
+    "currencies": {
+      "title": "Exchange Rates",
+      "subtitle": "Override live rates with fixed values for specific currency pairs.",
+      "from": "From",
+      "to": "To",
+      "rate": "Rate",
+      "fixedLabel": "Use fixed rate",
+      "save": "Save",
+      "saving": "Saving...",
+      "addPair": "Add Rate",
+      "noneConfigured": "No custom rates configured.",
+      "remove": "Remove",
+      "liveRate": "Live rate",
+      "fixedRate": "Fixed rate"
+    }
+  },
+  "errors": {
+    "unauthorized": "You must be signed in.",
+    "notFound": "Not found.",
+    "generic": "Something went wrong. Please try again."
+  }
+}

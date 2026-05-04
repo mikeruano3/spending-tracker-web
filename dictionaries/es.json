@@ -1,0 +1,148 @@
+{
+  "home": {
+    "title": "Bienvenido a Spending Tracker",
+    "subtitle": "Divide gastos, rastrea saldos y salda cuentas con amigos.",
+    "signIn": "Iniciar sesión",
+    "register": "Crear cuenta"
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar sesión",
+      "subtitle": "Ingresa tus credenciales para continuar.",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "tú@ejemplo.com",
+      "password": "Contraseña",
+      "passwordPlaceholder": "••••••••",
+      "submit": "Iniciar sesión",
+      "submitting": "Iniciando sesión...",
+      "noAccount": "¿No tienes una cuenta?",
+      "createOne": "Crear una"
+    },
+    "register": {
+      "title": "Crear cuenta",
+      "subtitle": "Ingresa tus datos para comenzar.",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "tú@ejemplo.com",
+      "password": "Contraseña",
+      "passwordPlaceholder": "••••••••",
+      "submit": "Crear cuenta",
+      "submitting": "Creando cuenta...",
+      "checkEmail": {
+        "title": "Revisa tu correo",
+        "body": "Te enviamos un enlace de confirmación. Haz clic en él para activar tu cuenta.",
+        "backToLogin": "Volver a iniciar sesión"
+      },
+      "hasAccount": "¿Ya tienes una cuenta?",
+      "signIn": "Iniciar sesión"
+    }
+  },
+  "nav": {
+    "dashboard": "Inicio",
+    "groups": "Grupos",
+    "add": "Agregar",
+    "settings": "Ajustes",
+    "account": "Cuenta"
+  },
+  "account": {
+    "title": "Cuenta",
+    "emailLabel": "Correo electrónico",
+    "displayNameLabel": "Nombre",
+    "displayNamePlaceholder": "Tu nombre",
+    "save": "Guardar",
+    "saving": "Guardando...",
+    "logout": "Cerrar sesión",
+    "currencySettings": "Tasas de Cambio",
+    "dangerZone": "Cuenta"
+  },
+  "dashboard": {
+    "title": "Inicio",
+    "youAreOwed": "Te deben",
+    "youOwe": "Debes",
+    "netBalance": "Balance neto",
+    "noGroups": "Aún no tienes grupos. Crea uno para comenzar.",
+    "yourGroups": "Tus Grupos",
+    "viewGroup": "Ver"
+  },
+  "groups": {
+    "title": "Grupos",
+    "newGroup": "Nuevo Grupo",
+    "noGroups": "Aún no perteneces a ningún grupo.",
+    "members": "miembros",
+    "create": {
+      "title": "Crear un Grupo",
+      "nameLabel": "Nombre del Grupo",
+      "namePlaceholder": "ej. Viaje a Barcelona",
+      "currencyLabel": "Moneda",
+      "submit": "Crear Grupo",
+      "submitting": "Creando..."
+    },
+    "detail": {
+      "expenses": "Gastos",
+      "debts": "Deudas Simplificadas",
+      "noExpenses": "Aún no hay gastos.",
+      "allSettled": "¡Todo saldado!",
+      "addMember": "Agregar Miembro",
+      "settleUp": "Saldar",
+      "paidBy": "pagado por",
+      "owes": "le debe",
+      "simplifyDebts": "Simplificar Deudas"
+    },
+    "addMember": {
+      "label": "Correo electrónico",
+      "placeholder": "amigo@ejemplo.com",
+      "submit": "Agregar",
+      "submitting": "Agregando...",
+      "notFound": "Usuario no encontrado. Debe registrarse primero.",
+      "alreadyMember": "Ya es miembro de este grupo."
+    },
+    "settle": {
+      "title": "Registrar Pago",
+      "to": "Pagado a",
+      "amount": "Monto",
+      "submit": "Registrar Pago",
+      "submitting": "Guardando..."
+    }
+  },
+  "expenses": {
+    "add": {
+      "title": "Agregar Gasto",
+      "groupLabel": "Grupo",
+      "groupPlaceholder": "Selecciona un grupo",
+      "descriptionLabel": "Descripción",
+      "descriptionPlaceholder": "ej. Cena",
+      "amountLabel": "Monto",
+      "currencyLabel": "Moneda",
+      "splitPreview": "Vista previa del reparto",
+      "each": "c/u",
+      "membersLabel": "¿Quiénes participan?",
+      "paidByLabel": "Pagado por",
+      "submit": "Agregar Gasto",
+      "submitting": "Agregando...",
+      "noGroups": "Necesitas un grupo primero."
+    }
+  },
+  "settings": {
+    "title": "Ajustes",
+    "preferredCurrency": "Moneda Preferida",
+    "currencies": {
+      "title": "Tasas de Cambio",
+      "subtitle": "Reemplaza las tasas en vivo con valores fijos para pares de monedas específicos.",
+      "from": "De",
+      "to": "A",
+      "rate": "Tasa",
+      "fixedLabel": "Usar tasa fija",
+      "save": "Guardar",
+      "saving": "Guardando...",
+      "addPair": "Agregar Tasa",
+      "noneConfigured": "No hay tasas personalizadas configuradas.",
+      "remove": "Eliminar",
+      "liveRate": "Tasa en vivo",
+      "fixedRate": "Tasa fija"
+    }
+  },
+  "errors": {
+    "unauthorized": "Debes iniciar sesión.",
+    "notFound": "No encontrado.",
+    "generic": "Algo salió mal. Por favor intenta de nuevo."
+  }
+}
