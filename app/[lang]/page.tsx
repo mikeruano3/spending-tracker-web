@@ -1,10 +1,16 @@
 import { getDictionary, hasLocale } from '@/lib/i18n'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
+import { createClient } from '@/lib/supabase/server'
 
 export default async function HomePage({ params }: PageProps<'/[lang]'>) {
   const { lang } = await params
   if (!hasLocale(lang)) notFound()
+
+  const supabase = await createClient()
+  const { data } = await supabase.auth.getClaims()
+  if (data?.claims) redirect(`/${lang}/dashboard`)
+
   const dict = await getDictionary(lang)
 
   return (

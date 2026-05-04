@@ -184,6 +184,89 @@ export async function addMemberAction(
   return { success: true }
 }
 
+export async function updateGroupNameAction(
+  _prevState: ActionState,
+  formData: FormData
+): Promise<ActionState> {
+  const groupId = formData.get('groupId') as string
+  const name = (formData.get('name') as string)?.trim()
+
+  if (!name) return { error: 'Name is required.' }
+
+  const supabase = await createClient()
+  const { data: claimsData } = await supabase.auth.getClaims()
+  if (!claimsData?.claims) return { error: 'Unauthorized' }
+
+  const { error } = await supabase
+    .from('groups')
+    .update({ name })
+    .eq('id', groupId)
+
+  if (error) return { error: error.message }
+
+  for (const locale of locales) {
+    revalidatePath(`/${locale}/groups/${groupId}`, 'page')
+    revalidatePath(`/${locale}/groups`, 'page')
+    revalidatePath(`/${locale}/dashboard`, 'page')
+  }
+
+  return { success: true }
+}
+
+export async function removeMemberAction(
+  _prevState: ActionState,
+  formData: FormData
+): Promise<ActionState> {
+  const groupId = formData.get('groupId') as string
+  const memberId = formData.get('memberId') as string
+
+  const supabase = await createClient()
+  const { data: claimsData } = await supabase.auth.getClaims()
+  if (!claimsData?.claims) return { error: 'Unauthorized' }
+
+  const { count: payerCount, error: payerError } = await supabase
+    .from('expenses')
+    .select('id', { count: 'exact', head: true })
+    .eq('group_id', groupId)
+    .eq('paid_by', memberId)
+
+  if (payerError) return { error: payerError.message }
+  if ((payerCount ?? 0) > 0) return { error: 'Cannot remove a member with registered expenses.' }
+
+  const { data: groupExpenses, error: expError } = await supabase
+    .from('expenses')
+    .select('id')
+    .eq('group_id', groupId)
+
+  if (expError) return { error: expError.message }
+
+  if (groupExpenses && groupExpenses.length > 0) {
+    const expenseIds = groupExpenses.map(e => e.id)
+    const { count: splitCount, error: splitError } = await supabase
+      .from('expense_splits')
+      .select('id', { count: 'exact', head: true })
+      .in('expense_id', expenseIds)
+      .eq('user_id', memberId)
+
+    if (splitError) return { error: splitError.message }
+    if ((splitCount ?? 0) > 0) return { error: 'Cannot remove a member with registered expenses.' }
+  }
+
+  const { error } = await supabase
+    .from('group_members')
+    .delete()
+    .eq('group_id', groupId)
+    .eq('user_id', memberId)
+
+  if (error) return { error: error.message }
+
+  for (const locale of locales) {
+    revalidatePath(`/${locale}/groups/${groupId}`, 'page')
+  }
+
+  return { success: true }
+}
+
 export async function recordSettlementAction(
   _prevState: ActionState,
   formData: FormData

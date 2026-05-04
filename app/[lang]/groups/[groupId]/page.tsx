@@ -15,10 +15,11 @@ import { cn } from '@/lib/utils'
 import AddMemberForm from './AddMemberForm'
 import SettleUpForm from './SettleUpForm'
 import EditExpenseForm from './EditExpenseForm'
+import EditGroupNameForm from './EditGroupNameForm'
 import DebtExplainDialog from './DebtExplainDialog'
 import DeleteConfirmDialog from './DeleteConfirmDialog'
 import EditSettlementForm from './EditSettlementForm'
-import { deleteExpenseAction, deleteSettlementAction } from './actions'
+import { deleteExpenseAction, deleteSettlementAction, removeMemberAction } from './actions'
 import type { MemberBreakdown, SimplifiedTransfer } from './DebtExplainDialog'
 
 export default async function GroupDetailPage({ params }: PageProps<'/[lang]/groups/[groupId]'>) {
@@ -41,6 +42,14 @@ export default async function GroupDetailPage({ params }: PageProps<'/[lang]/gro
   ])
 
   if (!group) notFound()
+
+  const membersWithExpenses = new Set<string>()
+  for (const expense of expenses) {
+    membersWithExpenses.add(expense.paidBy)
+    for (const split of expense.splits) {
+      membersWithExpenses.add(split.userId)
+    }
+  }
 
   // Serialisable data for client components
   const memberBreakdown: MemberBreakdown[] = netBalances.map(nb => ({
@@ -113,7 +122,10 @@ export default async function GroupDetailPage({ params }: PageProps<'/[lang]/gro
 
       {/* Header */}
       <div>
-        <h1 className="font-mono text-2xl font-bold tracking-tight">{group.name}</h1>
+        <div className="flex items-center gap-2">
+          <h1 className="font-mono text-2xl font-bold tracking-tight">{group.name}</h1>
+          <EditGroupNameForm groupId={group.id} currentName={group.name} />
+        </div>
         <Badge variant="secondary" className="mt-1 rounded-none font-mono">{group.currency}</Badge>
       </div>
 
@@ -262,8 +274,15 @@ export default async function GroupDetailPage({ params }: PageProps<'/[lang]/gro
                 <span className="font-mono text-sm font-semibold">{m.displayName}</span>
                 <span className="font-mono text-xs text-muted-foreground">{m.email}</span>
               </div>
-              {m.userId === userId && (
+              {m.userId === userId ? (
                 <span className="font-mono text-[10px] text-muted-foreground">you</span>
+              ) : !membersWithExpenses.has(m.userId) && (
+                <DeleteConfirmDialog
+                  action={removeMemberAction}
+                  hiddenFields={{ groupId: group.id, memberId: m.userId }}
+                  label="Remove"
+                  message={`Remove ${m.displayName} from this group?`}
+                />
               )}
             </div>
           ))}
