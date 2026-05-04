@@ -24,7 +24,7 @@ export default function CurrencyConverterDialog({
   const [inputAmount, setInputAmount] = useState('')
   const [exchangeRate, setExchangeRate] = useState('')
   const [rateDate, setRateDate] = useState<string | null>(null)
-  const [rateSource, setRateSource] = useState<'frankfurter' | 'fallback' | null>(null)
+  const [rateSource, setRateSource] = useState<'live' | 'frankfurter' | 'fallback' | null>(null)
   const [rateLoading, setRateLoading] = useState(false)
   const [isCustomRate, setIsCustomRate] = useState(false)
 
