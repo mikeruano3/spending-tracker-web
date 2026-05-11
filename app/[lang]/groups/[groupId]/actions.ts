@@ -267,6 +267,29 @@ export async function removeMemberAction(
   return { success: true }
 }
 
+export async function deleteGroupAction(
+  _prevState: ActionState,
+  formData: FormData
+): Promise<ActionState> {
+  const groupId = formData.get('groupId') as string
+
+  const supabase = await createClient()
+  const { data: claimsData } = await supabase.auth.getClaims()
+  if (!claimsData?.claims) return { error: 'Unauthorized' }
+
+  // All related rows (group_members, expenses, expense_splits, settlements)
+  // cascade-delete automatically via ON DELETE CASCADE constraints.
+  const { error } = await supabase.from('groups').delete().eq('id', groupId)
+  if (error) return { error: error.message }
+
+  for (const locale of locales) {
+    revalidatePath(`/${locale}/groups`, 'page')
+    revalidatePath(`/${locale}/dashboard`, 'page')
+  }
+
+  return { success: true }
+}
+
 export async function recordSettlementAction(
   _prevState: ActionState,
   formData: FormData

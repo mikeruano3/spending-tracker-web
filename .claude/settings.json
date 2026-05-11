@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const d = require\\('./dictionaries/en.json'\\); console.log\\(JSON.stringify\\(d.groups, null, 2\\)\\)\")",
+      "Bash(xargs grep *)",
+      "Bash(npx tsc *)"
+    ]
+  }
+}

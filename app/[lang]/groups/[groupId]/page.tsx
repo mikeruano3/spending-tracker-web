@@ -12,14 +12,19 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
+import ExpensesFilter from './ExpensesFilter'
 import AddMemberForm from './AddMemberForm'
 import SettleUpForm from './SettleUpForm'
-import EditExpenseForm from './EditExpenseForm'
 import EditGroupNameForm from './EditGroupNameForm'
+import MemberBalanceDialog from './MemberBalanceDialog'
+import type { MemberBalanceDetail } from './MemberBalanceDialog'
 import DebtExplainDialog from './DebtExplainDialog'
+import DirectDebtDialog from './DirectDebtDialog'
+import type { DirectDebtExpense, DirectDebtMember } from './DirectDebtDialog'
 import DeleteConfirmDialog from './DeleteConfirmDialog'
+import DeleteGroupDialog from './DeleteGroupDialog'
 import EditSettlementForm from './EditSettlementForm'
-import { deleteExpenseAction, deleteSettlementAction, removeMemberAction } from './actions'
+import { deleteSettlementAction, removeMemberAction } from './actions'
 import type { MemberBreakdown, SimplifiedTransfer } from './DebtExplainDialog'
 
 export default async function GroupDetailPage({ params }: PageProps<'/[lang]/groups/[groupId]'>) {
@@ -64,6 +69,19 @@ export default async function GroupDetailPage({ params }: PageProps<'/[lang]/gro
     fromName: t.fromName,
     toName: t.toName,
     amount: formatMoney(t.amount, group.currency),
+  }))
+
+  const directDebtMembers: DirectDebtMember[] = netBalances.map(nb => ({
+    userId: nb.userId,
+    displayName: nb.displayName,
+  }))
+
+  const directDebtExpenses: DirectDebtExpense[] = expenses.map(e => ({
+    description: e.description,
+    date: e.expenseDate,
+    paidBy: e.paidBy,
+    splits: e.splits.map(s => ({ userId: s.userId, amount: s.amount })),
+    currency: e.currency,
   }))
 
   // Aggregate settlements by (payer, payee) pair — use | separator (UUIDs contain hyphens)
@@ -113,6 +131,38 @@ export default async function GroupDetailPage({ params }: PageProps<'/[lang]/gro
     email: m.email,
   }))
 
+  const memberBalanceDetails: Record<string, MemberBalanceDetail> = {}
+  for (const nb of netBalances) {
+    const expensesPaid = expenses
+      .filter(e => e.paidBy === nb.userId)
+      .map(e => ({
+        description: e.description,
+        date: e.expenseDate,
+        amount: formatMoney(e.amount, e.currency),
+      }))
+    const expensesOwed = expenses
+      .filter(e => e.splits.some(s => s.userId === nb.userId))
+      .map(e => ({
+        description: e.description,
+        date: e.expenseDate,
+        amount: formatMoney(
+          e.splits.find(s => s.userId === nb.userId)!.amount,
+          e.currency
+        ),
+        paidByName: e.paidByName,
+      }))
+    memberBalanceDetails[nb.userId] = {
+      displayName: nb.displayName,
+      totalPaid: formatMoney(memberPaid[nb.userId] ?? new Decimal(0), group.currency),
+      totalShare: formatMoney(memberOwed[nb.userId] ?? new Decimal(0), group.currency),
+      net: formatMoney(nb.amount.abs(), group.currency),
+      isPositive: nb.amount.gt(0),
+      isZero: nb.amount.eq(0),
+      expensesPaid,
+      expensesOwed,
+    }
+  }
+
   return (
     <main className="flex flex-col gap-6 p-4">
       {/* Floating add-expense button */}
@@ -125,6 +175,9 @@ export default async function GroupDetailPage({ params }: PageProps<'/[lang]/gro
         <div className="flex items-center gap-2">
           <h1 className="font-mono text-2xl font-bold tracking-tight">{group.name}</h1>
           <EditGroupNameForm groupId={group.id} currentName={group.name} />
+          <div className="ml-auto">
+            <DeleteGroupDialog groupId={group.id} groupName={group.name} lang={lang} />
+          </div>
         </div>
         <Badge variant="secondary" className="mt-1 rounded-none font-mono">{group.currency}</Badge>
       </div>
@@ -145,7 +198,8 @@ export default async function GroupDetailPage({ params }: PageProps<'/[lang]/gro
                   <tr className="border-b border-border">
                     <th className="py-1.5 pr-4 text-left font-semibold uppercase tracking-wider text-muted-foreground text-[10px]">Member</th>
                     <th className="py-1.5 px-4 text-right font-semibold uppercase tracking-wider text-muted-foreground text-[10px]">Total Spent</th>
-                    <th className="py-1.5 pl-4 text-right font-semibold uppercase tracking-wider text-muted-foreground text-[10px]">Net Balance</th>
+                    <th className="py-1.5 px-4 text-right font-semibold uppercase tracking-wider text-muted-foreground text-[10px]">Net Balance</th>
+                    <th className="py-1.5 pl-2 text-right font-semibold uppercase tracking-wider text-muted-foreground text-[10px]"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -156,7 +210,7 @@ export default async function GroupDetailPage({ params }: PageProps<'/[lang]/gro
                         {formatMoney(memberPaid[nb.userId] ?? new Decimal(0), group.currency)}
                       </td>
                       <td className={cn(
-                        'py-1.5 pl-4 text-right font-semibold',
+                        'py-1.5 px-4 text-right font-semibold',
                         nb.amount.gt(0)
                           ? 'text-green-600 dark:text-green-400'
                           : nb.amount.lt(0)
@@ -164,6 +218,11 @@ export default async function GroupDetailPage({ params }: PageProps<'/[lang]/gro
                           : 'text-muted-foreground'
                       )}>
                         {nb.amount.gt(0) ? '+' : ''}{formatMoney(nb.amount, group.currency)}
+                      </td>
+                      <td className="py-1 pl-2 text-right">
+                        {memberBalanceDetails[nb.userId] && (
+                          <MemberBalanceDialog detail={memberBalanceDetails[nb.userId]} />
+                        )}
                       </td>
                     </tr>
                   ))}
@@ -191,10 +250,15 @@ export default async function GroupDetailPage({ params }: PageProps<'/[lang]/gro
             </div>
           )}
 
-          {/* Explain Debt button */}
+          {/* Explain Debt / Direct Debt buttons */}
           {netBalances.length > 0 && (
-            <div className="pt-1">
+            <div className="flex gap-2 pt-1">
               <DebtExplainDialog breakdown={memberBreakdown} transfers={transfersForDialog} />
+              <DirectDebtDialog
+                members={directDebtMembers}
+                expenses={directDebtExpenses}
+                groupCurrency={group.currency}
+              />
             </div>
           )}
         </CardContent>
@@ -205,59 +269,13 @@ export default async function GroupDetailPage({ params }: PageProps<'/[lang]/gro
         <h2 className="font-mono text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           {dict.groups.detail.expenses}
         </h2>
-        {expenses.length === 0 ? (
-          <p className="font-mono text-sm text-muted-foreground">{dict.groups.detail.noExpenses}</p>
-        ) : (
-          expenses.map(expense => (
-            <Card key={expense.id} className="rounded-none border-border">
-              <CardContent className="p-4">
-                <div className="flex items-start justify-between gap-2">
-                  <div className="flex flex-col gap-0.5 min-w-0">
-                    <p className="font-mono text-sm font-semibold">{expense.description}</p>
-                    <p className="font-mono text-xs text-muted-foreground">
-                      <span className="font-semibold text-blue-600 dark:text-blue-400">{dict.groups.detail.paidBy}</span>{' '}
-                      <span className="text-blue-600 dark:text-blue-400">{expense.paidByName}</span>
-                    </p>
-                    {expense.splits.length > 0 && (
-                      <div className="mt-0.5 flex flex-col gap-0.5">
-                        <span className="font-mono text-xs font-semibold text-muted-foreground">Involved:</span>
-                        {expense.splits.map(s => (
-                          <span key={s.userId} className="font-mono text-xs text-muted-foreground">
-                            {s.displayName} — {formatMoney(s.amount, expense.currency)}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex flex-col items-end gap-1 shrink-0">
-                    <p className="font-mono text-sm font-semibold">
-                      {formatMoney(expense.amount, expense.currency)}
-                    </p>
-                    <p className="font-mono text-xs text-muted-foreground">{expense.expenseDate}</p>
-                    <div className="flex gap-1">
-                      <EditExpenseForm
-                        expense={{
-                          id: expense.id,
-                          groupId: group.id,
-                          description: expense.description,
-                          amount: expense.amount,
-                          currency: expense.currency,
-                          splits: expense.splits,
-                        }}
-                        groupMembers={membersForForm}
-                      />
-                      <DeleteConfirmDialog
-                        action={deleteExpenseAction}
-                        hiddenFields={{ expenseId: expense.id, groupId: group.id }}
-                        message="Delete this expense? The splits will also be removed and balances will update."
-                      />
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))
-        )}
+        <ExpensesFilter
+          expenses={expenses}
+          groupMembers={membersForForm}
+          groupId={group.id}
+          noExpensesLabel={dict.groups.detail.noExpenses}
+          paidByLabel={dict.groups.detail.paidBy}
+        />
       </div>
 
       <Separator className="my-2" />
