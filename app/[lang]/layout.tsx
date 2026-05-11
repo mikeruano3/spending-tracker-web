@@ -7,6 +7,7 @@ import { getDictionary, hasLocale } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/server";
 import BottomNav from "@/components/BottomNav";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Analytics } from '@vercel/analytics/next';
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -57,6 +58,7 @@ export default async function RootLayout({
           {children}
           {isAuthenticated && <BottomNav dict={dict.nav} lang={lang} />}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
