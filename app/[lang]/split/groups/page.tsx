@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 
-export default async function GroupsPage({ params }: PageProps<'/[lang]/groups'>) {
+export default async function GroupsPage({ params }: PageProps<'/[lang]/split/groups'>) {
   const { lang } = await params
   if (!hasLocale(lang)) notFound()
 
@@ -23,7 +23,7 @@ export default async function GroupsPage({ params }: PageProps<'/[lang]/groups'>
       <div className="flex items-center justify-between">
         <h1 className="font-mono text-2xl font-bold tracking-tight">{dict.groups.title}</h1>
         <Button asChild className="rounded-none font-mono">
-          <Link href={`/${lang}/groups/new`}>{dict.groups.newGroup}</Link>
+          <Link href={`/${lang}/split/groups/new`}>{dict.groups.newGroup}</Link>
         </Button>
       </div>
 
@@ -32,7 +32,7 @@ export default async function GroupsPage({ params }: PageProps<'/[lang]/groups'>
       ) : (
         <div className="flex flex-col gap-3">
           {groups.map(group => (
-            <Link key={group.id} href={`/${lang}/groups/${group.id}`}>
+            <Link key={group.id} href={`/${lang}/split/groups/${group.id}`}>
               <Card className="rounded-none border-border transition-colors hover:bg-accent">
                 <CardContent className="flex items-center justify-between p-4">
                   <div>

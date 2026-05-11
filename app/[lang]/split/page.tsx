@@ -69,7 +69,7 @@ export default async function SplitPage({ params }: PageProps<'/[lang]/split'>) 
             {dict.dashboard.yourGroups}
           </h2>
           <Button asChild variant="outline" size="sm" className="rounded-none font-mono">
-            <Link href={`/${lang}/groups/new`}>{dict.groups.newGroup}</Link>
+            <Link href={`/${lang}/split/groups/new`}>{dict.groups.newGroup}</Link>
           </Button>
         </div>
 
@@ -77,7 +77,7 @@ export default async function SplitPage({ params }: PageProps<'/[lang]/split'>) 
           <p className="font-mono text-sm text-muted-foreground">{dict.dashboard.noGroups}</p>
         ) : (
           groups.map(group => (
-            <Link key={group.id} href={`/${lang}/groups/${group.id}`}>
+            <Link key={group.id} href={`/${lang}/split/groups/${group.id}`}>
               <Card className="rounded-none border-border transition-colors hover:bg-accent">
                 <CardContent className="flex items-center justify-between p-4">
                   <div>

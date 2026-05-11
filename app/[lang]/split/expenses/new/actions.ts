@@ -59,7 +59,7 @@ export async function addExpenseAction(
   if (rpcError) return { error: rpcError.message }
 
   for (const locale of locales) {
-    revalidatePath(`/${locale}/groups/${groupId}`, 'page')
+    revalidatePath(`/${locale}/split/groups/${groupId}`, 'page')
     revalidatePath(`/${locale}/split`, 'page')
   }
 

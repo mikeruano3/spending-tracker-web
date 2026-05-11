@@ -27,7 +27,7 @@ import EditSettlementForm from './EditSettlementForm'
 import { deleteSettlementAction, removeMemberAction } from './actions'
 import type { MemberBreakdown, SimplifiedTransfer } from './DebtExplainDialog'
 
-export default async function GroupDetailPage({ params }: PageProps<'/[lang]/groups/[groupId]'>) {
+export default async function GroupDetailPage({ params }: PageProps<'/[lang]/split/groups/[groupId]'>) {
   const { lang, groupId } = await params
   if (!hasLocale(lang)) notFound()
 
@@ -167,7 +167,7 @@ export default async function GroupDetailPage({ params }: PageProps<'/[lang]/gro
     <main className="flex flex-col gap-6 p-4">
       {/* Floating add-expense button */}
       <Button asChild size="icon" className="fixed bottom-24 right-4 z-50 h-14 w-14 rounded-full font-mono shadow-lg text-lg">
-        <Link href={`/${lang}/expenses/new?groupId=${group.id}`}>+</Link>
+        <Link href={`/${lang}/split/expenses/new?groupId=${group.id}`}>+</Link>
       </Button>
 
       {/* Header */}

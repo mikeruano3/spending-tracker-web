@@ -10,7 +10,7 @@ export interface FormMember {
   displayName: string
 }
 
-export default async function AddExpensePage({ params }: PageProps<'/[lang]/expenses/new'>) {
+export default async function AddExpensePage({ params }: PageProps<'/[lang]/split/expenses/new'>) {
   const { lang } = await params
   if (!hasLocale(lang)) notFound()
 

@@ -26,7 +26,7 @@ export default function DeleteGroupDialog({
   useEffect(() => {
     if (state.success) {
       setOpen(false)
-      router.push(`/${lang}/groups`)
+      router.push(`/${lang}/split/groups`)
     }
   }, [state.success, lang, router])
 

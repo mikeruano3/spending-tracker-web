@@ -43,7 +43,7 @@ export async function createGroupAction(
 
   // Revalidate groups list for all locales
   for (const locale of locales) {
-    revalidatePath(`/${locale}/groups`, 'page')
+    revalidatePath(`/${locale}/split/groups`, 'page')
     revalidatePath(`/${locale}/split`, 'page')
   }
 

@@ -13,7 +13,7 @@ interface BottomNavProps {
   lang: string
 }
 
-const SPENDING_PREFIXES = ['/split', '/groups', '/expenses', '/settings', '/account']
+const SPENDING_PREFIXES = ['/split', '/account']
 
 export default function BottomNav({ dict, lang }: BottomNavProps) {
   const pathname = usePathname()
@@ -28,11 +28,11 @@ export default function BottomNav({ dict, lang }: BottomNavProps) {
   if (!isSpendingArea) return null
 
   const tabs = [
-    { href: `/${lang}/split`,         label: dict.dashboard, icon: HouseIcon },
-    { href: `/${lang}/groups`,        label: dict.groups,    icon: UsersThreeIcon },
-    { href: `/${lang}/expenses/new`,  label: dict.add,       icon: PlusCircleIcon },
-    { href: `/${lang}/settings`,      label: dict.settings,  icon: GearSixIcon },
-    { href: `/${lang}/account`,       label: dict.account,   icon: UserCircleIcon },
+    { href: `/${lang}/split`,                label: dict.dashboard, icon: HouseIcon },
+    { href: `/${lang}/split/groups`,         label: dict.groups,    icon: UsersThreeIcon },
+    { href: `/${lang}/split/expenses/new`,   label: dict.add,       icon: PlusCircleIcon },
+    { href: `/${lang}/split/settings`,       label: dict.settings,  icon: GearSixIcon },
+    { href: `/${lang}/account`,              label: dict.account,   icon: UserCircleIcon },
   ]
 
   return (
@@ -41,9 +41,15 @@ export default function BottomNav({ dict, lang }: BottomNavProps) {
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       <div className="flex h-16 items-center justify-around px-2">
-        {tabs.map(({ href, label, icon: Icon }) => {
-          const isActive = pathname.startsWith(href)
-          return (
+        {(() => {
+          // Longest-prefix wins so /split doesn't stay lit on /split/groups etc.
+          const activeHref = tabs
+            .map((t) => t.href)
+            .filter((h) => pathname === h || pathname.startsWith(`${h}/`))
+            .sort((a, b) => b.length - a.length)[0]
+          return tabs.map(({ href, label, icon: Icon }) => {
+            const isActive = href === activeHref
+            return (
             <Link
               key={href}
               href={href}
@@ -56,7 +62,8 @@ export default function BottomNav({ dict, lang }: BottomNavProps) {
               <span className="text-[10px]">{label}</span>
             </Link>
           )
-        })}
+          })
+        })()}
       </div>
     </nav>
   )

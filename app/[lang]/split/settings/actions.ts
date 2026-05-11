@@ -37,7 +37,7 @@ export async function upsertCurrencySettingAction(
   if (error) return { error: error.message }
 
   for (const locale of locales) {
-    revalidatePath(`/${locale}/settings`, 'page')
+    revalidatePath(`/${locale}/split/settings`, 'page')
   }
 
   return { success: true }
@@ -62,7 +62,7 @@ export async function deleteCurrencySettingAction(
   if (error) return { error: error.message }
 
   for (const locale of locales) {
-    revalidatePath(`/${locale}/settings`, 'page')
+    revalidatePath(`/${locale}/split/settings`, 'page')
   }
 
   return { success: true }
@@ -86,7 +86,7 @@ export async function updatePreferredCurrencyAction(
   if (error) return { error: error.message }
 
   for (const locale of locales) {
-    revalidatePath(`/${locale}/settings`, 'page')
+    revalidatePath(`/${locale}/split/settings`, 'page')
     revalidatePath(`/${locale}/split`, 'page')
   }
 

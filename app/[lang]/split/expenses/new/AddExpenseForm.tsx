@@ -78,7 +78,7 @@ export default function AddExpenseForm({
 
   useEffect(() => {
     if (state.success) {
-      router.push(`/${lang}/groups/${selectedGroupId}`)
+      router.push(`/${lang}/split/groups/${selectedGroupId}`)
     }
   }, [state.success, lang, router, selectedGroupId])
 

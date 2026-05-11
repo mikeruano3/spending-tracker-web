@@ -3,7 +3,7 @@ import { notFound, redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import CreateGroupForm from './CreateGroupForm'
 
-export default async function NewGroupPage({ params }: PageProps<'/[lang]/groups/new'>) {
+export default async function NewGroupPage({ params }: PageProps<'/[lang]/split/groups/new'>) {
   const { lang } = await params
   if (!hasLocale(lang)) notFound()
 

@@ -51,7 +51,7 @@ export async function updateExpenseAction(
   if (rpcError) return { error: rpcError.message }
 
   for (const locale of locales) {
-    revalidatePath(`/${locale}/groups/${groupId}`, 'page')
+    revalidatePath(`/${locale}/split/groups/${groupId}`, 'page')
     revalidatePath(`/${locale}/split`, 'page')
   }
 
@@ -88,7 +88,7 @@ export async function updateSettlementAction(
   if (error) return { error: error.message }
 
   for (const locale of locales) {
-    revalidatePath(`/${locale}/groups/${groupId}`, 'page')
+    revalidatePath(`/${locale}/split/groups/${groupId}`, 'page')
     revalidatePath(`/${locale}/split`, 'page')
   }
 
@@ -110,7 +110,7 @@ export async function deleteExpenseAction(
   if (error) return { error: error.message }
 
   for (const locale of locales) {
-    revalidatePath(`/${locale}/groups/${groupId}`, 'page')
+    revalidatePath(`/${locale}/split/groups/${groupId}`, 'page')
     revalidatePath(`/${locale}/split`, 'page')
   }
 
@@ -132,7 +132,7 @@ export async function deleteSettlementAction(
   if (error) return { error: error.message }
 
   for (const locale of locales) {
-    revalidatePath(`/${locale}/groups/${groupId}`, 'page')
+    revalidatePath(`/${locale}/split/groups/${groupId}`, 'page')
     revalidatePath(`/${locale}/split`, 'page')
   }
 
@@ -178,7 +178,7 @@ export async function addMemberAction(
   if (error) return { error: error.message }
 
   for (const locale of locales) {
-    revalidatePath(`/${locale}/groups/${groupId}`, 'page')
+    revalidatePath(`/${locale}/split/groups/${groupId}`, 'page')
   }
 
   return { success: true }
@@ -205,8 +205,8 @@ export async function updateGroupNameAction(
   if (error) return { error: error.message }
 
   for (const locale of locales) {
-    revalidatePath(`/${locale}/groups/${groupId}`, 'page')
-    revalidatePath(`/${locale}/groups`, 'page')
+    revalidatePath(`/${locale}/split/groups/${groupId}`, 'page')
+    revalidatePath(`/${locale}/split/groups`, 'page')
     revalidatePath(`/${locale}/split`, 'page')
   }
 
@@ -261,7 +261,7 @@ export async function removeMemberAction(
   if (error) return { error: error.message }
 
   for (const locale of locales) {
-    revalidatePath(`/${locale}/groups/${groupId}`, 'page')
+    revalidatePath(`/${locale}/split/groups/${groupId}`, 'page')
   }
 
   return { success: true }
@@ -283,7 +283,7 @@ export async function deleteGroupAction(
   if (error) return { error: error.message }
 
   for (const locale of locales) {
-    revalidatePath(`/${locale}/groups`, 'page')
+    revalidatePath(`/${locale}/split/groups`, 'page')
     revalidatePath(`/${locale}/split`, 'page')
   }
 
@@ -316,7 +316,7 @@ export async function recordSettlementAction(
   if (error) return { error: error.message }
 
   for (const locale of locales) {
-    revalidatePath(`/${locale}/groups/${groupId}`, 'page')
+    revalidatePath(`/${locale}/split/groups/${groupId}`, 'page')
     revalidatePath(`/${locale}/split`, 'page')
   }
 

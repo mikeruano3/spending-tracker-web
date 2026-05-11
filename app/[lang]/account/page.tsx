@@ -57,7 +57,7 @@ export default async function AccountPage({ params }: PageProps<'/[lang]/account
 
       {/* Currency settings link */}
       <Link
-        href={`/${lang}/settings`}
+        href={`/${lang}/split/settings`}
         className="flex items-center justify-between border border-border p-4 font-mono text-sm transition-colors hover:bg-accent"
       >
         <span>{dict.account.currencySettings}</span>

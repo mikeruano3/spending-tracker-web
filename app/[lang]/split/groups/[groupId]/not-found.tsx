@@ -15,7 +15,7 @@ export default function GroupNotFound() {
         Group not found or you don&apos;t have access to it.
       </p>
       <Button asChild variant="outline" className="rounded-none font-mono">
-        <Link href={`/${lang}/groups`}>Back to groups</Link>
+        <Link href={`/${lang}/split/groups`}>Back to groups</Link>
       </Button>
     </main>
   )

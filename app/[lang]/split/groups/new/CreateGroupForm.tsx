@@ -18,7 +18,7 @@ export default function CreateGroupForm({ dict, lang }: { dict: GroupsDict; lang
 
   useEffect(() => {
     if (state.success && state.groupId) {
-      router.push(`/${lang}/groups/${state.groupId}`)
+      router.push(`/${lang}/split/groups/${state.groupId}`)
     }
   }, [state.success, state.groupId, lang, router])
 

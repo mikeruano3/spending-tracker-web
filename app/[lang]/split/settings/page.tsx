@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
-export default async function SettingsPage({ params }: PageProps<'/[lang]/settings'>) {
+export default async function SettingsPage({ params }: PageProps<'/[lang]/split/settings'>) {
   const { lang } = await params
   if (!hasLocale(lang)) notFound()
 

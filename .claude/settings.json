@@ -9,7 +9,15 @@
       "Bash(rmdir c:/Users/miguel/Desktop/NEWWORKINGPROJECTS/spending-tracker-web/app/\\\\[lang\\\\]/dashboard)",
       "Bash(npx next *)",
       "PowerShell(npx next build 2>&1)",
-      "PowerShell(npx eslint app/[lang]/habits app/[lang]/todos app/[lang]/split app/[lang]/page.tsx components/BottomNav.tsx lib/db/habits.ts lib/db/todos.ts lib/week.ts 2>&1)"
+      "PowerShell(npx eslint app/[lang]/habits app/[lang]/todos app/[lang]/split app/[lang]/page.tsx components/BottomNav.tsx lib/db/habits.ts lib/db/todos.ts lib/week.ts 2>&1)",
+      "Bash(mv c:/Users/miguel/Desktop/NEWWORKINGPROJECTS/spending-tracker-web/app/\\\\[lang\\\\]/groups c:/Users/miguel/Desktop/NEWWORKINGPROJECTS/spending-tracker-web/app/\\\\[lang\\\\]/split/groups)",
+      "Bash(mv c:/Users/miguel/Desktop/NEWWORKINGPROJECTS/spending-tracker-web/app/\\\\[lang\\\\]/expenses c:/Users/miguel/Desktop/NEWWORKINGPROJECTS/spending-tracker-web/app/\\\\[lang\\\\]/split/expenses)",
+      "Bash(mv c:/Users/miguel/Desktop/NEWWORKINGPROJECTS/spending-tracker-web/app/\\\\[lang\\\\]/settings c:/Users/miguel/Desktop/NEWWORKINGPROJECTS/spending-tracker-web/app/\\\\[lang\\\\]/split/settings)",
+      "Read(//c/Users/miguel/Desktop/NEWWORKINGPROJECTS/spending-tracker-web/app/**)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\miguel\\Desktop\\NEWWORKINGPROJECTS\\spending-tracker-web\\app\\[lang]\\groups",
+      "C:\\Users\\miguel\\Desktop\\NEWWORKINGPROJECTS\\spending-tracker-web\\app\\[lang]\\groups"
     ]
   }
 }
