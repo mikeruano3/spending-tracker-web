@@ -76,12 +76,12 @@ export default function DirectDebtDialog({
           Direct Debt
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-[90vh] overflow-y-auto">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle className="font-mono">Direct Debt</DialogTitle>
         </DialogHeader>
 
-        <div className="mt-2 flex flex-col gap-4">
+        <div className="mt-2 flex flex-col gap-4 overflow-y-auto max-h-[70vh]">
 
           {/* Person selectors */}
           <div className="flex items-center gap-2">

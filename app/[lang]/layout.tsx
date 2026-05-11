@@ -6,6 +6,7 @@ import { locales } from "@/lib/locales";
 import { getDictionary, hasLocale } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/server";
 import BottomNav from "@/components/BottomNav";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -39,6 +40,7 @@ export default async function RootLayout({
   return (
     <html
       lang={lang}
+      suppressHydrationWarning
       className={cn(
         "h-full antialiased",
         geistSans.variable,
@@ -51,8 +53,10 @@ export default async function RootLayout({
         "min-h-full flex flex-col",
         isAuthenticated && "pb-[calc(4rem+env(safe-area-inset-bottom))]"
       )}>
-        {children}
-        {isAuthenticated && <BottomNav dict={dict.nav} lang={lang} />}
+        <ThemeProvider>
+          {children}
+          {isAuthenticated && <BottomNav dict={dict.nav} lang={lang} />}
+        </ThemeProvider>
       </body>
     </html>
   );

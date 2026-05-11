@@ -37,12 +37,12 @@ export default function MemberBalanceDialog({ detail }: { detail: MemberBalanceD
           View
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-[90vh] overflow-y-auto">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle className="font-mono">{displayName}&apos;s Balance</DialogTitle>
         </DialogHeader>
 
-        <div className="mt-2 flex flex-col gap-4">
+        <div className="mt-2 flex flex-col gap-4 overflow-y-auto max-h-[70vh]">
 
           {/* Summary cards */}
           <div className="grid grid-cols-3 gap-2">

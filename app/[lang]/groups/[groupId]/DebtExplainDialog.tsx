@@ -38,12 +38,12 @@ export default function DebtExplainDialog({
           Explain Debt
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-[90vh] overflow-y-auto">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle className="font-mono">How debts were calculated</DialogTitle>
         </DialogHeader>
 
-        <div className="mt-2 flex flex-col gap-4">
+        <div className="mt-2 flex flex-col gap-4 overflow-y-auto max-h-[70vh]">
 
           {/* Step 1 — expense balances */}
           <div className="flex flex-col gap-2">

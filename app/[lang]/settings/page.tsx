@@ -5,6 +5,7 @@ import { getRates, SUPPORTED_CURRENCIES } from '@/lib/currencies'
 import CurrencySettingsForm from './CurrencySettingsForm'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export default async function SettingsPage({ params }: PageProps<'/[lang]/settings'>) {
   const { lang } = await params
@@ -56,6 +57,17 @@ export default async function SettingsPage({ params }: PageProps<'/[lang]/settin
   return (
     <main className="flex flex-col gap-6 p-4">
       <h1 className="font-mono text-2xl font-bold tracking-tight">{dict.settings.title}</h1>
+
+      {/* Appearance */}
+      <div className="flex flex-col gap-3">
+        <h2 className="font-mono text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+          Appearance
+        </h2>
+        <ThemeToggle />
+      </div>
+
+      <Separator />
+
       <CurrencySettingsForm
         settings={settings}
         preferredCurrency={profile?.preferred_currency ?? 'USD'}
