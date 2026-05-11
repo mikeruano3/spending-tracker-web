@@ -27,11 +27,11 @@ export default function BottomNav({ dict, lang }: BottomNavProps) {
   ]
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div
-        className="flex h-16 items-center justify-around px-1"
-        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
-      >
+    <nav
+      className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+    >
+      <div className="flex h-16 items-center justify-around px-2">
         {tabs.map(({ href, label, icon: Icon }) => {
           const isActive = pathname.startsWith(href)
           return (
@@ -39,11 +39,11 @@ export default function BottomNav({ dict, lang }: BottomNavProps) {
               key={href}
               href={href}
               className={cn(
-                'flex flex-1 flex-col items-center gap-1 py-2 font-mono text-xs transition-colors',
+                'flex flex-1 flex-col items-center gap-1 py-3 font-mono text-xs transition-colors',
                 isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
               )}
             >
-              <Icon size={20} weight={isActive ? 'fill' : 'regular'} />
+              <Icon size={24} weight={isActive ? 'fill' : 'regular'} />
               <span className="text-[10px]">{label}</span>
             </Link>
           )
