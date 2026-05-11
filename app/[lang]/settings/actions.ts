@@ -87,7 +87,7 @@ export async function updatePreferredCurrencyAction(
 
   for (const locale of locales) {
     revalidatePath(`/${locale}/settings`, 'page')
-    revalidatePath(`/${locale}/dashboard`, 'page')
+    revalidatePath(`/${locale}/split`, 'page')
   }
 
   return { success: true }

@@ -60,7 +60,7 @@ export async function addExpenseAction(
 
   for (const locale of locales) {
     revalidatePath(`/${locale}/groups/${groupId}`, 'page')
-    revalidatePath(`/${locale}/dashboard`, 'page')
+    revalidatePath(`/${locale}/split`, 'page')
   }
 
   return { success: true, expenseId: expenseId as string }

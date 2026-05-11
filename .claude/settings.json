@@ -3,7 +3,13 @@
     "allow": [
       "Bash(node -e \"const d = require\\('./dictionaries/en.json'\\); console.log\\(JSON.stringify\\(d.groups, null, 2\\)\\)\")",
       "Bash(xargs grep *)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(grep -iE \"^\\(Coins|ListChecks|CalendarBlank|ArrowRight|House|UsersThree|PlusCircle|GearSix|UserCircle|X|Trash|PencilSimple|Pencil|CheckSquare|CaretLeft|CaretRight|Check|Plus\\)\\\\.d\\\\.ts$\")",
+      "Bash(rm c:/Users/miguel/Desktop/NEWWORKINGPROJECTS/spending-tracker-web/app/\\\\[lang\\\\]/dashboard/page.tsx c:/Users/miguel/Desktop/NEWWORKINGPROJECTS/spending-tracker-web/app/\\\\[lang\\\\]/dashboard/loading.tsx)",
+      "Bash(rmdir c:/Users/miguel/Desktop/NEWWORKINGPROJECTS/spending-tracker-web/app/\\\\[lang\\\\]/dashboard)",
+      "Bash(npx next *)",
+      "PowerShell(npx next build 2>&1)",
+      "PowerShell(npx eslint app/[lang]/habits app/[lang]/todos app/[lang]/split app/[lang]/page.tsx components/BottomNav.tsx lib/db/habits.ts lib/db/todos.ts lib/week.ts 2>&1)"
     ]
   }
 }

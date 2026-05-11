@@ -1,9 +1,26 @@
 {
   "home": {
-    "title": "Welcome to Spending Tracker",
-    "subtitle": "Split expenses, track balances, and settle up with friends.",
+    "title": "Welcome to Ruano Roca",
+    "subtitle": "A small collection of personal tools.",
     "signIn": "Sign in",
-    "register": "Create account"
+    "register": "Create account",
+    "apps": {
+      "split": {
+        "name": "Spending Tracker",
+        "description": "Split expenses, track balances, settle up."
+      },
+      "habits": {
+        "name": "Habit Tracker",
+        "description": "Build habits with a weekly calendar."
+      },
+      "todos": {
+        "name": "Todo List",
+        "description": "Capture and complete tasks."
+      }
+    },
+    "openSpending": "Open",
+    "openHabits": "Open",
+    "openTodos": "Open"
   },
   "auth": {
     "login": {
@@ -37,7 +54,7 @@
     }
   },
   "nav": {
-    "dashboard": "Dashboard",
+    "dashboard": "Split",
     "groups": "Groups",
     "add": "Add",
     "settings": "Settings",
@@ -55,7 +72,7 @@
     "dangerZone": "Account"
   },
   "dashboard": {
-    "title": "Dashboard",
+    "title": "Spending Tracker",
     "youAreOwed": "You are owed",
     "youOwe": "You owe",
     "netBalance": "Net balance",
@@ -139,6 +156,55 @@
       "liveRate": "Live rate",
       "fixedRate": "Fixed rate"
     }
+  },
+  "habits": {
+    "title": "Habits",
+    "tabs": {
+      "list": "Habits",
+      "calendar": "Week"
+    },
+    "list": {
+      "namePlaceholder": "New habit (e.g. Read 20 minutes)",
+      "add": "Add Habit",
+      "adding": "Adding...",
+      "empty": "No habits yet. Add one to get started.",
+      "delete": "Delete",
+      "edit": "Edit",
+      "save": "Save",
+      "cancel": "Cancel",
+      "deleteConfirm": "Delete this habit and all its completions?"
+    },
+    "calendar": {
+      "noHabits": "Add a habit first to start tracking.",
+      "prevWeek": "Previous",
+      "nextWeek": "Next",
+      "thisWeek": "This week"
+    },
+    "days": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    }
+  },
+  "todos": {
+    "title": "Todos",
+    "addPlaceholder": "Add a new task...",
+    "add": "Add",
+    "adding": "Adding...",
+    "emptyAll": "No tasks. Add one above.",
+    "emptyActive": "Nothing left to do.",
+    "emptyDone": "No completed tasks yet.",
+    "tabs": {
+      "active": "Active",
+      "done": "Done"
+    },
+    "delete": "Delete",
+    "deleteConfirm": "Delete this task?",
+    "clearDone": "Clear completed"
   },
   "errors": {
     "unauthorized": "You must be signed in.",

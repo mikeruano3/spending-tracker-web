@@ -1,9 +1,26 @@
 {
   "home": {
-    "title": "Bienvenido a Spending Tracker",
-    "subtitle": "Divide gastos, rastrea saldos y salda cuentas con amigos.",
+    "title": "Bienvenido a Ruano Roca",
+    "subtitle": "Una pequeña colección de herramientas personales.",
     "signIn": "Iniciar sesión",
-    "register": "Crear cuenta"
+    "register": "Crear cuenta",
+    "apps": {
+      "split": {
+        "name": "Gastos Compartidos",
+        "description": "Divide gastos, rastrea saldos, salda cuentas."
+      },
+      "habits": {
+        "name": "Hábitos",
+        "description": "Construye hábitos con un calendario semanal."
+      },
+      "todos": {
+        "name": "Tareas",
+        "description": "Captura y completa pendientes."
+      }
+    },
+    "openSpending": "Abrir",
+    "openHabits": "Abrir",
+    "openTodos": "Abrir"
   },
   "auth": {
     "login": {
@@ -37,7 +54,7 @@
     }
   },
   "nav": {
-    "dashboard": "Inicio",
+    "dashboard": "Gastos",
     "groups": "Grupos",
     "add": "Agregar",
     "settings": "Ajustes",
@@ -55,7 +72,7 @@
     "dangerZone": "Cuenta"
   },
   "dashboard": {
-    "title": "Inicio",
+    "title": "Gastos Compartidos",
     "youAreOwed": "Te deben",
     "youOwe": "Debes",
     "netBalance": "Balance neto",
@@ -139,6 +156,55 @@
       "liveRate": "Tasa en vivo",
       "fixedRate": "Tasa fija"
     }
+  },
+  "habits": {
+    "title": "Hábitos",
+    "tabs": {
+      "list": "Hábitos",
+      "calendar": "Semana"
+    },
+    "list": {
+      "namePlaceholder": "Nuevo hábito (ej. Leer 20 minutos)",
+      "add": "Agregar",
+      "adding": "Agregando...",
+      "empty": "Aún no hay hábitos. Agrega uno para comenzar.",
+      "delete": "Eliminar",
+      "edit": "Editar",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "deleteConfirm": "¿Eliminar este hábito y todas sus marcas?"
+    },
+    "calendar": {
+      "noHabits": "Agrega un hábito primero para comenzar.",
+      "prevWeek": "Anterior",
+      "nextWeek": "Siguiente",
+      "thisWeek": "Esta semana"
+    },
+    "days": {
+      "mon": "Lun",
+      "tue": "Mar",
+      "wed": "Mié",
+      "thu": "Jue",
+      "fri": "Vie",
+      "sat": "Sáb",
+      "sun": "Dom"
+    }
+  },
+  "todos": {
+    "title": "Tareas",
+    "addPlaceholder": "Agregar nueva tarea...",
+    "add": "Agregar",
+    "adding": "Agregando...",
+    "emptyAll": "Sin tareas. Agrega una arriba.",
+    "emptyActive": "Nada por hacer.",
+    "emptyDone": "Aún no hay tareas completadas.",
+    "tabs": {
+      "active": "Activas",
+      "done": "Hechas"
+    },
+    "delete": "Eliminar",
+    "deleteConfirm": "¿Eliminar esta tarea?",
+    "clearDone": "Limpiar completadas"
   },
   "errors": {
     "unauthorized": "Debes iniciar sesión.",

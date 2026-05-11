@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton'
 
-export default function DashboardLoading() {
+export default function SplitLoading() {
   return (
     <div className="flex flex-col gap-6 p-4">
       <Skeleton className="h-8 w-32" />

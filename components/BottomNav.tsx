@@ -13,13 +13,22 @@ interface BottomNavProps {
   lang: string
 }
 
+const SPENDING_PREFIXES = ['/split', '/groups', '/expenses', '/settings', '/account']
+
 export default function BottomNav({ dict, lang }: BottomNavProps) {
   const pathname = usePathname()
 
   if (pathname.includes('/auth/')) return null
 
+  // Strip the locale prefix so we can match against route prefixes.
+  const pathWithoutLocale = pathname.replace(new RegExp(`^/${lang}`), '') || '/'
+  const isSpendingArea = SPENDING_PREFIXES.some(
+    (p) => pathWithoutLocale === p || pathWithoutLocale.startsWith(`${p}/`)
+  )
+  if (!isSpendingArea) return null
+
   const tabs = [
-    { href: `/${lang}/dashboard`,     label: dict.dashboard, icon: HouseIcon },
+    { href: `/${lang}/split`,         label: dict.dashboard, icon: HouseIcon },
     { href: `/${lang}/groups`,        label: dict.groups,    icon: UsersThreeIcon },
     { href: `/${lang}/expenses/new`,  label: dict.add,       icon: PlusCircleIcon },
     { href: `/${lang}/settings`,      label: dict.settings,  icon: GearSixIcon },

@@ -52,7 +52,7 @@ export async function updateExpenseAction(
 
   for (const locale of locales) {
     revalidatePath(`/${locale}/groups/${groupId}`, 'page')
-    revalidatePath(`/${locale}/dashboard`, 'page')
+    revalidatePath(`/${locale}/split`, 'page')
   }
 
   return { success: true }
@@ -89,7 +89,7 @@ export async function updateSettlementAction(
 
   for (const locale of locales) {
     revalidatePath(`/${locale}/groups/${groupId}`, 'page')
-    revalidatePath(`/${locale}/dashboard`, 'page')
+    revalidatePath(`/${locale}/split`, 'page')
   }
 
   return { success: true }
@@ -111,7 +111,7 @@ export async function deleteExpenseAction(
 
   for (const locale of locales) {
     revalidatePath(`/${locale}/groups/${groupId}`, 'page')
-    revalidatePath(`/${locale}/dashboard`, 'page')
+    revalidatePath(`/${locale}/split`, 'page')
   }
 
   return { success: true }
@@ -133,7 +133,7 @@ export async function deleteSettlementAction(
 
   for (const locale of locales) {
     revalidatePath(`/${locale}/groups/${groupId}`, 'page')
-    revalidatePath(`/${locale}/dashboard`, 'page')
+    revalidatePath(`/${locale}/split`, 'page')
   }
 
   return { success: true }
@@ -207,7 +207,7 @@ export async function updateGroupNameAction(
   for (const locale of locales) {
     revalidatePath(`/${locale}/groups/${groupId}`, 'page')
     revalidatePath(`/${locale}/groups`, 'page')
-    revalidatePath(`/${locale}/dashboard`, 'page')
+    revalidatePath(`/${locale}/split`, 'page')
   }
 
   return { success: true }
@@ -284,7 +284,7 @@ export async function deleteGroupAction(
 
   for (const locale of locales) {
     revalidatePath(`/${locale}/groups`, 'page')
-    revalidatePath(`/${locale}/dashboard`, 'page')
+    revalidatePath(`/${locale}/split`, 'page')
   }
 
   return { success: true }
@@ -317,7 +317,7 @@ export async function recordSettlementAction(
 
   for (const locale of locales) {
     revalidatePath(`/${locale}/groups/${groupId}`, 'page')
-    revalidatePath(`/${locale}/dashboard`, 'page')
+    revalidatePath(`/${locale}/split`, 'page')
   }
 
   return { success: true }
